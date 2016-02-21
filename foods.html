@@ -52,57 +52,53 @@
 			</div>
 			<div id="contents">
 				
-					<div class="wrapper"  align="center">
-						<ul id="sb-slider" class="sb-slider">
+					<div class="wrapper">
+
+				<ul id="sb-slider" class="sb-slider">
 					<li>
 						<a href="http://www.flickr.com/photos/strupler/2969141180" target="_blank"><img src="images/1.jpg" alt="image1"/></a>
 						<div class="sb-description">
-							<h3>日出之美便在于它脱胎于最深的黑暗——辛夷坞</h3>
+							<h3>Creative Lifesaver</h3>
 						</div>
 					</li>
 					<li>
 						<a href="http://www.flickr.com/photos/strupler/2968268187" target="_blank"><img src="images/2.jpg" alt="image2"/></a>
 						<div class="sb-description">
-							<h3>有着阳光的方向，就是人生追求的方向，而梦想，就好比是阳光。——喻虹</h3>
+							<h3>Honest Entertainer</h3>
 						</div>
 					</li>
 					<li>
 						<a href="http://www.flickr.com/photos/strupler/2968114825" target="_blank"><img src="images/3.jpg" alt="image1"/></a>
 						<div class="sb-description">
-							<h3>离喧嚣的人群越来越远，离内心越来也近。</h3>
+							<h3>Brave Astronaut</h3>
 						</div>
 					</li>
 					<li>
 						<a href="http://www.flickr.com/photos/strupler/2968122059" target="_blank"><img src="images/4.jpg" alt="image1"/></a>
 						<div class="sb-description">
-							<h3>拥有一颗童心，绽放最美的笑容。</h3>
+							<h3>Affectionate Decision Maker</h3>
 						</div>
 					</li>
 					<li>
 						<a href="http://www.flickr.com/photos/strupler/2969119944" target="_blank"><img src="images/5.jpg" alt="image1"/></a>
 						<div class="sb-description">
-							<h3>我守护如泡沫般灿烂的童话，快乐才刚刚开始悲伤却早已潜伏而来。——几米</h3>
+							<h3>Faithful Investor</h3>
 						</div>
 					</li>
 					<li>
 						<a href="http://www.flickr.com/photos/strupler/2968126177" target="_blank"><img src="images/6.jpg" alt="image1"/></a>
 						<div class="sb-description">
-							<h3>你所以恋眷那把伞，只是爱与那把伞下的人同行。——张晓风</h3>
+							<h3>Groundbreaking Artist</h3>
 						</div>
 					</li>
 					<li>
 						<a href="http://www.flickr.com/photos/strupler/2968945158" target="_blank"><img src="images/7.jpg" alt="image1"/></a>
 						<div class="sb-description">
-							<h3>风后面是风，天空上面是天空，道路前面还是道路。——海子</h3>
-						</div>
-					</li>
-					<li>
-						<a href="http://www.flickr.com/photos/strupler/2968945158" target="_blank"><img src="images/8.jpg" alt="image1"/></a>
-						<div class="sb-description">
-							<h3>你的时间是有限的，所以不要浪费时间活在别人的生命中。——史蒂夫·乔布斯</h3>
+							<h3>Selfless Philantropist</h3>
 						</div>
 					</li>
 				</ul>
+
 				<div id="shadow" class="shadow"></div>
 
 				<div id="nav-arrows" class="nav-arrows">
@@ -110,44 +106,35 @@
 					<a href="#">Previous</a>
 				</div>
 
-				<div id="nav-dots" class="nav-dots">
-					<span class="nav-dot-current"></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
+				<div id="nav-options" class="nav-options">
+					<span id="navPlay">Play</span>
+					<span id="navPause">Pause</span>
 				</div>
 
 			</div><!-- /wrapper -->
 
+			
 		</div>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.slicebox.js"></script>
 		<script type="text/javascript">
 			$(function() {
-
+				
 				var Page = (function() {
 
 					var $navArrows = $( '#nav-arrows' ).hide(),
-						$navDots = $( '#nav-dots' ).hide(),
-						$nav = $navDots.children( 'span' ),
+						$navOptions = $( '#nav-options' ).hide(),
 						$shadow = $( '#shadow' ).hide(),
 						slicebox = $( '#sb-slider' ).slicebox( {
 							onReady : function() {
 
 								$navArrows.show();
-								$navDots.show();
+								$navOptions.show();
 								$shadow.show();
 
 							},
-							onBeforeChange : function( pos ) {
-
-								$nav.removeClass( 'nav-dot-current' );
-								$nav.eq( pos ).addClass( 'nav-dot-current' );
-
-							}
+							orientation : 'h',
+							cuboidsCount : 3
 						} ),
 						
 						init = function() {
@@ -172,24 +159,18 @@
 
 							} );
 
-							$nav.each( function( i ) {
-							
-								$( this ).on( 'click', function( event ) {
-									
-									var $dot = $( this );
-									
-									if( !slicebox.isActive() ) {
+							$( '#navPlay' ).on( 'click', function() {
+								
+								slicebox.play();
+								return false;
 
-										$nav.removeClass( 'nav-dot-current' );
-										$dot.addClass( 'nav-dot-current' );
-									
-									}
-									
-									slicebox.jump( i + 1 );
-									return false;
+							} );
+
+							$( '#navPause' ).on( 'click', function() {
 								
-								} );
-								
+								slicebox.pause();
+								return false;
+
 							} );
 
 						};
